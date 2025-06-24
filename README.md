@@ -32,7 +32,10 @@ O sistema classifica o estado do usuário em categorias como:
 - **Focado (Focus)**
 - **Distraído (Distracted)**
 - **Cansado (Tired)**
-- E outros estados que podem ser treinados.
+- **Raiva (Angry)**
+- **Animado (Excited)**
+- **Erro (Mistake)**
+- **Quebrado (Brake)**
 
 A tecnologia central é uma combinação de detecção de pontos-chave (keypoints) e uma abordagem bio-inspirada que simula uma **câmera de eventos (Event-based Camera)**, tornando o sistema mais resiliente a variações de iluminação.
 
