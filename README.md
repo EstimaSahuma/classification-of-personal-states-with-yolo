@@ -1,7 +1,3 @@
-Claro! Aqui está uma sugestão de `README.md` bem detalhado e formatado para o seu projeto no GitHub. Ele explica o conceito, o funcionamento técnico baseado no seu código, e como outros podem instalá-lo e executá-lo.
-
----
-
 # 👁️ EyeState Detector: Análise de Atenção em Tempo Real
 
 ![Python](https://img.shields.io/badge/Python-3.9%2B-blue.svg)
@@ -13,8 +9,7 @@ Claro! Aqui está uma sugestão de `README.md` bem detalhado e formatado para o 
 
 Sua principal aplicação é na **segurança veicular**, onde pode ser usado para monitorar motoristas e gerar alertas caso sinais de distração ou sonolência sejam detectados, ajudando a prevenir acidentes de trânsito.
 
-
-*(Sugestão: grave um GIF curto mostrando o programa funcionando e substitua o link acima)*
+*(Sugestão: grave um GIF curto mostrando o programa funcionando e coloque aqui)*
 
 ---
 
@@ -65,6 +60,11 @@ O pipeline do projeto é dividido em várias etapas inteligentes que trabalham e
 4.  **Classificação do Estado com YOLOv8-Clf**:
     - A imagem de eventos gerada na etapa anterior é então enviada para um segundo modelo YOLOv8, treinado especificamente para **classificação de imagens**.
     - Este modelo (`best.pt`) foi treinado com um dataset de imagens de eventos de olhos para aprender a diferenciar os estados de "focado", "distraído", etc.
+    - O desempenho do classificador no conjunto de validação pode ser visualizado na **matriz de confusão normalizada** abaixo. Ela mostra a capacidade do modelo de distinguir corretamente entre as diferentes classes.
+
+    ![Matriz de Confusão Normalizada](https://github.com/Netinhoklz/classification-of-personal-states-with-yolo/blob/main/train412/confusion_matrix_normalized.png?raw=true)
+    
+    *Como podemos observar, os valores na diagonal principal são altos, indicando uma alta taxa de acerto para cada classe. As confusões entre estados opostos (ex: `Focus` e `Tired`) são mínimas, validando a eficácia da abordagem.*
 
 5.  **Sistema de Votação para Estabilidade**:
     - Classificações frame a frame podem ser voláteis. Para garantir um resultado final confiável, implementamos um **sistema de votação**.
@@ -91,8 +91,8 @@ Siga os passos abaixo para executar o projeto em sua máquina local.
 
 1.  **Clone o repositório:**
     ```bash
-    git clone https://github.com/seu-usuario/seu-repositorio.git
-    cd seu-repositorio
+    git clone https://github.com/Netinhoklz/classification-of-personal-states-with-yolo.git
+    cd classification-of-personal-states-with-yolo
     ```
 
 2.  **Crie e ative um ambiente virtual (recomendado):**
@@ -121,17 +121,18 @@ Siga os passos abaixo para executar o projeto em sua máquina local.
 
 4.  **Baixe os modelos YOLO:**
     - O `yolov8n-pose.pt` será baixado automaticamente pela biblioteca `ultralytics` na primeira execução.
-    - **IMPORTANTE**: Você precisa fornecer o seu modelo classificador treinado (`best.pt`). Coloque-o em uma pasta de sua escolha (ex: `models/`) e **atualize o caminho no script**:
+    - **IMPORTANTE**: O modelo classificador treinado (`best.pt`) já deve estar no repositório ou você precisa baixá-lo. **Certifique-se de que o caminho no script está correto**:
 
     ```python
-    # Altere esta linha no código
-    model_classifier = YOLO(r'C:\caminho\para\o\seu\best.pt') 
+    # Altere esta linha no seu código, se necessário
+    model_classifier = YOLO(r'C:\caminho\completo\para\o\seu\best.pt') 
     ```
 
 5.  **Execute o script:**
     ```bash
-    python nome_do_seu_script.py
+    python seu_script.py
     ```
+    *(Substitua `seu_script.py` pelo nome do seu arquivo Python principal)*
 
 Pressione a tecla `q` com a janela do OpenCV em foco para fechar o programa.
 
